@@ -25,6 +25,7 @@ def random_reset():
 
 # function display all out of screen
 def display_pacman(array):
+    subprocess.run("cls", shell=True)
     print("[@]: Pacman"
           "\n[c]: Cherry + 5 point + 1 life"
           "\n[b]: Banana + 2 point"
@@ -41,15 +42,14 @@ def start_pacman():
     global life , point , steps
     grid = np.array([['=', '=', '=', '=', '=', '='],
                      ['=', '@', 'c', 'b', 'c', '='],
-                     ['=', 'b', '*', 'b', 'c', '='],
+                     ['=', '*', '*', 'b', 'c', '='],
                      ['=', 'c', 'b', 'c', '*', '='],
                      ['=', 'c', 'b', '*', 'M', '='],
                      ['=', '=', '=', '=', '=', '=']])
     life, point, steps = 0, 0, 0
     while True:
-        subprocess.run("cls",shell=True)
         display_pacman(grid)
-        time.sleep(3)
+        time.sleep(2)
 
         # get position of pacman
         current_position = np.where(grid == "@")
@@ -69,22 +69,30 @@ def start_pacman():
                 point += 5
                 steps += 1
                 grid[new_x,new_y] = "@"
+                display_pacman(grid)
+                print("Pacman get 1 Cherry.")
+                time.sleep(1)
                 break
             # if pacman meet Banana, increasing point and step
             if grid[new_x, new_y] == "b":
                 point += 2
                 steps += 1
                 grid[new_x,new_y] ="@"
+                display_pacman(grid)
+                print("Pacman get 1 Banana.")
+                time.sleep(1)
                 break
             # if pacman meet Ghost, decreasing life, increasing step
             if grid[new_x, new_y] == "*":
                 life -= 1
                 steps += 1
-                if life >= 0:
-                    grid[new_x, new_y] = "@"
-                else:
-                    print("Pacman died. Game Over!")
-                    time.sleep(2)
+                grid[new_x, new_y] = "@"
+                display_pacman(grid)
+                print("Pacman meet 1 Ghost.")
+                time.sleep(1)
+                if life < 0:
+                    print("Not enough life. Pacman died. Game Over!")
+                    time.sleep(1)
                     if input("Do you restart Pacman? [Y]es or [N]o: ").lower() == "y" :
                         start_pacman()
                     else:
@@ -93,7 +101,7 @@ def start_pacman():
             # if pacman meet Medal, Pacman Win
             if grid[new_x, new_y] == "M":
                 print(("Pacman win"))
-                time.sleep(2)
+                time.sleep(1)
                 if input("Do you restart Pacman? [y]es or [n]o: ").lower() == "y":
                     start_pacman()
                 else:
@@ -109,11 +117,10 @@ def start_pacman():
                 new_x = random_new_position[0]
                 new_y = random_new_position[1]
                 steps += 1
-                subprocess.run("cls", shell=True)
                 display_pacman(grid)
                 print(f"Pacman hit the wall."
                     f"\nPacman will land on a new random position.")
-                time.sleep(4)
+                time.sleep(2)
 
 start_pacman()
 
