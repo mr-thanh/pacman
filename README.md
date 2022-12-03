@@ -1,4 +1,4 @@
-# pacman_auto
+# pacman_auto - Mr.Thanh
 
 ![image](https://user-images.githubusercontent.com/116017011/205419172-b4933c39-7188-4b5f-9cd4-b070ecd3a866.png)
 
