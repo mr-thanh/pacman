@@ -11,6 +11,7 @@ There are some things on the map:
 - Medal (M): The final goal. When he get Medal, he win the game.
 
 Some picture of his:
+
 ![image](https://user-images.githubusercontent.com/116017011/205419172-b4933c39-7188-4b5f-9cd4-b070ecd3a866.png)
 
 ![image](https://user-images.githubusercontent.com/116017011/205419396-ab38ee40-400f-400f-8ba0-a0917017b97c.png)
