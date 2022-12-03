@@ -1,29 +1,29 @@
 import random
 import time
 import subprocess
-from handle_arr import version_1
-# def replace_all_value_square_array(array,old_value,new_value):
-#     dimension = len(array)
-#     for i in range(dimension):
-#         for j in range(dimension):
-#             if array[i][j] == old_value:
-#                 array[i][j] = new_value
-#
-# def position_value_array(array,value):
-#     dimension = len(array)
-#     check = False
-#     for i in range(dimension):
-#         if check:
-#             i = i - 1
-#             break
-#         for j in range(dimension):
-#             if array[i][j] == value:
-#                 check = True
-#                 break
-#     if check:
-#         return i,j
-#     else:
-#         raise ValueError("No value matches")
+
+def replace_all_value_square_array(array,old_value,new_value):
+    dimension = len(array)
+    for i in range(dimension):
+        for j in range(dimension):
+            if array[i][j] == old_value:
+                array[i][j] = new_value
+
+def position_value_array(array,value):
+    dimension = len(array)
+    check = False
+    for i in range(dimension):
+        if check:
+            i = i - 1
+            break
+        for j in range(dimension):
+            if array[i][j] == value:
+                check = True
+                break
+    if check:
+        return i,j
+    else:
+        raise ValueError("No value matches")
 
 # function return random index that is random step of pacman
 # up/down/right/left of 1 unit
@@ -61,7 +61,6 @@ def display_pacman(array):
         print("    {}  {}  {}  {}  {}  {}".format(item[0],item[1],item[2],item[3],item[4],item[5]))
     print()
 
-
 def start_pacman():
     global life , point , steps
     grid = [['=', '=', '=', '=', '=', '='],
@@ -76,7 +75,7 @@ def start_pacman():
         time.sleep(2)
 
         # get position of pacman
-        current_position = version_1.position_value_array(grid,"@")
+        current_position = position_value_array(grid,"@")
         x = current_position[0]
         y = current_position[1]
 
@@ -85,7 +84,7 @@ def start_pacman():
         new_x = new_position[0]
         new_y = new_position[1]
 
-        version_1.replace_all_value_square_array(grid,"@","-")
+        replace_all_value_square_array(grid,"@","-")
         while True:
             #if pacman meet Cherry, increasing life, point and step
             if grid[new_x][new_y] == "c":
@@ -148,6 +147,4 @@ def start_pacman():
 
 start_pacman()
 
-# if __name__ == "__main__":
-#     start_pacman()
 
